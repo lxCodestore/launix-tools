@@ -1,0 +1,7 @@
+/target/classes/org/ml/tools/BasicTokenResolver.class
+/target/classes/org/ml/tools/*.class
+/.idea/*
+*.lst
+*.jar
+pom.properties
+
