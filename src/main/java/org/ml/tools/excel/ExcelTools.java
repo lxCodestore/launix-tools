@@ -146,24 +146,39 @@ public class ExcelTools {
 
         //.... Now parse all the rows
         for (int r = sheet.getFirstRowNum(); r <= sheet.getLastRowNum(); r++) {
+
             Row row = sheet.getRow(r);
+
             if (row != null) {
+
                 List<String> rowData = new ArrayList<>();
                 boolean foundValidData = false;
+                int lastColumnWithValidData = 0;
+
                 for (int icol = minColNumber; icol <= row.getLastCellNum(); icol++) {
+
                     if (row.getCell(icol) != null) {
+
                         ExcelCellData exc = new ExcelCellData(row.getCell(icol));
                         String data = exc.getProcessedData().trim();
                         rowData.add(data);
                         if (data.length() > 0) {
+                            //.... Abort here if first cell starts with a #
+                            if (data.startsWith("#") && icol == minColNumber) {
+                                break;
+                            }
                             foundValidData = true;
+                            lastColumnWithValidData = icol;
                         }
                     } else {
                         rowData.add("");
                     }
+
                 }
+
                 if (foundValidData) {
-                    result.add(rowData);
+                    //.... Need to remove any trailing blanks / empty strings
+                    result.add(rowData.subList(0, lastColumnWithValidData + 1));
                 }
             }
         }
