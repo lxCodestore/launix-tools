@@ -1,4 +1,3 @@
-/target/classes/org/ml/tools/*/*.class
-/target/classes/org/ml/tools/*.class
+/target/*
 *.lst
 *.jar
