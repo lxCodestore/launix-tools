@@ -1,6 +1,4 @@
 /target/classes/org/ml/tools/*/*.class
 /target/classes/org/ml/tools/*.class
-/.idea/*
 *.lst
 *.jar
-pom.properties
